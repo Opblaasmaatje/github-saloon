@@ -6,6 +6,7 @@ use Opblaasmaatje\Github\Data\User;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
+use Spatie\LaravelData\Optional;
 
 class GetUser extends Request
 {
@@ -25,7 +26,7 @@ class GetUser extends Request
     public function createDtoFromResponse(Response $response): mixed
     {
         if ($response->failed()) {
-            return null;
+            return Optional::create();
         }
 
         return User::from($response->json());

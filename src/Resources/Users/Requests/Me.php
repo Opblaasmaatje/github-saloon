@@ -6,6 +6,7 @@ use Opblaasmaatje\Github\Data\PrivateUser;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
+use Spatie\LaravelData\Optional;
 
 class Me extends Request
 {
@@ -19,7 +20,7 @@ class Me extends Request
     public function createDtoFromResponse(Response $response): mixed
     {
         if ($response->failed()) {
-            return null;
+            return Optional::create();
         }
 
         return PrivateUser::from($response->json());
