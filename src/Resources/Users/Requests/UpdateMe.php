@@ -32,7 +32,7 @@ class UpdateMe extends Me implements HasBody
 
     public function createDtoFromResponse(Response $response): mixed
     {
-        if($response->failed()){
+        if ($response->failed()) {
             return Optional::create();
         }
 
