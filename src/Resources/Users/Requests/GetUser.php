@@ -24,6 +24,10 @@ class GetUser extends Request
 
     public function createDtoFromResponse(Response $response): mixed
     {
+        if ($response->failed()) {
+            return null;
+        }
+
         return User::from($response->json());
     }
 }

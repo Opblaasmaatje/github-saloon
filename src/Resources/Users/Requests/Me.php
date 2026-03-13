@@ -18,6 +18,10 @@ class Me extends Request
 
     public function createDtoFromResponse(Response $response): mixed
     {
+        if ($response->failed()) {
+            return null;
+        }
+
         return PrivateUser::from($response->json());
     }
 }
