@@ -5,6 +5,7 @@ namespace Opblaasmaatje\Github\Resources;
 use Opblaasmaatje\Github\Bodies\UpdateMeBody;
 use Opblaasmaatje\Github\GithubConnector;
 use Opblaasmaatje\Github\Resources\Users\Requests\GetUser;
+use Opblaasmaatje\Github\Resources\Users\Requests\GetUserById;
 use Opblaasmaatje\Github\Resources\Users\Requests\Me;
 use Opblaasmaatje\Github\Resources\Users\Requests\UpdateMe;
 use Saloon\Http\Response;
@@ -15,6 +16,13 @@ class Users
         protected GithubConnector $connector,
     ) {
         //
+    }
+
+    public function getUserById(int $id): Response
+    {
+        return $this->connector->send(
+            new GetUserById($id)
+        );
     }
 
     public function getUser(string $username): Response

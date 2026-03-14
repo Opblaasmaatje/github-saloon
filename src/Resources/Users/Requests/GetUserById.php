@@ -7,22 +7,19 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 
-class GetUser extends Request
+class GetUserById extends Request
 {
     protected Method $method = Method::GET;
 
-    /**
-     * Username or Github id.
-     */
     public function __construct(
-        protected string $username,
+        protected int $id,
     ) {
         //
     }
 
     public function resolveEndpoint(): string
     {
-        return "users/{$this->username}";
+        return "user/{$this->id}";
     }
 
     public function createDtoFromResponse(Response $response): mixed
