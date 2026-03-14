@@ -6,14 +6,16 @@ use Opblaasmaatje\Github\Data\User;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
-use Spatie\LaravelData\Optional;
 
 class GetUser extends Request
 {
     protected Method $method = Method::GET;
 
+    /**
+     * Username or Github id.
+     */
     public function __construct(
-        protected string $username,
+        protected string|int $username,
     ) {
         //
     }
@@ -26,7 +28,7 @@ class GetUser extends Request
     public function createDtoFromResponse(Response $response): mixed
     {
         if ($response->failed()) {
-            return Optional::create();
+            return null;
         }
 
         return User::from($response->json());
